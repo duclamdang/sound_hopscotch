@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sound Hopscotch Game</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #fff8e1;
+      font-family: 'Baloo 2', cursive;
+    }
+
+    .game-container {
+      max-width: 500px;
+      margin: auto;
+      padding: 50px 20px;
+      text-align: center;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      background: #fff;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #ff9800;
+    }
+
+    .btn-custom {
+      padding: 15px 25px;
+      font-size: 1.2rem;
+      border-radius: 15px;
+      min-width: 180px;
+    }
+
+    .btn-listen {
+      background-color: #ffa726;
+      color: white;
+    }
+
+    .btn-left {
+      background-color: #42a5f5;
+      color: white;
+    }
+
+    .btn-right {
+      background-color: #66bb6a;
+      color: white;
+    }
+
+    .btn-play-again {
+      background-color: #ab47bc;
+      color: white;
+    }
+
+    .result {
+      font-size: 1.4rem;
+      margin-top: 15px;
+    }
+
+    .score {
+      font-size: 1.1rem;
+      color: #555;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="game-container">
+    <h1>🎧 Sound Hopscotch</h1>
+
+    <button id="listenBtn" class="btn btn-listen btn-custom my-4">🔊 Nghe từ</button>
+
+    <div class="d-flex justify-content-center gap-3 mb-3">
+      <button class="btn btn-left btn-custom" onclick="chooseSound('/ʌ/')">⬅️ Nhảy trái /ʌ/</button>
+      <button class="btn btn-right btn-custom" onclick="chooseSound('/ɑː/')">➡️ Nhảy phải /ɑː/</button>
+    </div>
+
+    <div id="result" class="result"></div>
+    <div class="score">Điểm: <span id="score">0</span> | Tổng: <span id="total">0</span></div>
+
+    <button id="playAgain" class="btn btn-play-again btn-custom mt-3 d-none" onclick="playNext()">🔁 Tiếp tục</button>
+  </div>
+
+  <audio id="correctSound" src="https://cdn.pixabay.com/audio/2021/08/04/audio_7f59f3d205.mp3"></audio>
+  <audio id="wrongSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_78ac79fcfb.mp3"></audio>
+
+  <script>
+    const words = [
+      { text: 'partner', sound: '/ɑː/' }, { text: 'plump', sound: '/ʌ/' }, { text: 'funny', sound: '/ʌ/' },
+      { text: 'smart', sound: '/ɑː/' }, { text: 'barn', sound: '/ɑː/' }, { text: 'sunny', sound: '/ʌ/' },
+      { text: 'puzzle', sound: '/ʌ/' }, { text: 'targeted', sound: '/ɑː/' }, { text: 'punch', sound: '/ʌ/' },
+      { text: 'jumped', sound: '/ʌ/' }, { text: 'chuck', sound: '/ʌ/' }, { text: 'cuddle', sound: '/ʌ/' },
+      { text: 'charm', sound: '/ɑː/' }, { text: 'strut', sound: '/ʌ/' }, { text: 'market', sound: '/ɑː/' },
+      { text: 'apart', sound: '/ɑː/' }, { text: 'mug', sound: '/ʌ/' }, { text: 'harder', sound: '/ɑː/' },
+      { text: 'artist', sound: '/ɑː/' }, { text: 'march', sound: '/ɑː/' }, { text: 'bark', sound: '/ɑː/' },
+      { text: 'run', sound: '/ʌ/' }, { text: 'target', sound: '/ɑː/' }, { text: 'calm', sound: '/ɑː/' },
+      { text: 'large', sound: '/ɑː/' }, { text: 'hard', sound: '/ɑː/' }, { text: 'crush', sound: '/ʌ/' },
+      { text: 'truck', sound: '/ʌ/' }, { text: 'garden', sound: '/ɑː/' }, { text: 'jump', sound: '/ʌ/' },
+      { text: 'fun', sound: '/ʌ/' }, { text: 'stuff', sound: '/ʌ/' }, { text: 'yard', sound: '/ɑː/' },
+      { text: 'duck', sound: '/ʌ/' }, { text: 'start', sound: '/ɑː/' }, { text: 'arm', sound: '/ɑː/' },
+      { text: 'card', sound: '/ɑː/' }, { text: 'father', sound: '/ɑː/' }, { text: 'bus', sound: '/ʌ/' },
+      { text: 'car', sound: '/ɑː/' }, { text: 'bug', sound: '/ʌ/' }, { text: 'mud', sound: '/ʌ/' },
+      { text: 'nut', sound: '/ʌ/' }, { text: 'charge', sound: '/ɑː/' }, { text: 'hut', sound: '/ʌ/' },
+      { text: 'park', sound: '/ɑː/' }, { text: 'sun', sound: '/ʌ/' }, { text: 'shark', sound: '/ɑː/' },
+      { text: 'star', sound: '/ɑː/' }, { text: 'cup', sound: '/ʌ/' }, { text: 'drum', sound: '/ʌ/' },
+      { text: 'shut', sound: '/ʌ/' }, { text: 'harbor', sound: '/ɑː/' }, { text: 'cut', sound: '/ʌ/' },
+      { text: 'alarm', sound: '/ɑː/' }, { text: 'glove', sound: '/ʌ/' }, { text: 'flood', sound: '/ʌ/' },
+      { text: 'dark', sound: '/ɑː/' }, { text: 'luck', sound: '/ʌ/' }, { text: 'farm', sound: '/ɑː/' }
+    ];
+
+    let currentWord = null;
+    let score = 0, total = 0;
+
+    const result = document.getElementById("result");
+    const scoreDisplay = document.getElementById("score");
+    const totalDisplay = document.getElementById("total");
+    const playAgainBtn = document.getElementById("playAgain");
+
+    const correctSound = document.getElementById("correctSound");
+    const wrongSound = document.getElementById("wrongSound");
+
+    document.getElementById("listenBtn").onclick = () => {
+      playNext();
+    };
+
+    function playNext() {
+      currentWord = words[Math.floor(Math.random() * words.length)];
+      const utterance = new SpeechSynthesisUtterance(currentWord.text);
+      utterance.lang = "en-GB"; // Chỉ dùng British English
+      speechSynthesis.speak(utterance);
+      result.textContent = "";
+      result.className = "result";
+      playAgainBtn.classList.add("d-none");
+    }
+
+    function chooseSound(selected) {
+      if (!currentWord) return;
+
+      total++;
+      totalDisplay.textContent = total;
+
+      if (selected === currentWord.sound) {
+        score++;
+        scoreDisplay.textContent = score;
+        result.textContent = `✅ Chính xác! Từ: ${currentWord.text} (${currentWord.sound})`;
+        result.classList.add("text-success");
+        correctSound.play();
+      } else {
+        result.textContent = `❌ Sai rồi! Từ: ${currentWord.text} (${currentWord.sound})`;
+        result.classList.add("text-danger");
+        wrongSound.play();
+      }
+
+      playAgainBtn.classList.remove("d-none");
+
+      setTimeout(() => {
+        playNext();
+      }, 1500);
+    }
+  </script>
+</body>
+
+</html>
