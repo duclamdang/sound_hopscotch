@@ -89,79 +89,92 @@
   <audio id="wrongSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_78ac79fcfb.mp3"></audio>
 
   <script>
-    const words = [
-      { text: 'partner', sound: '/ɑː/' }, { text: 'plump', sound: '/ʌ/' }, { text: 'funny', sound: '/ʌ/' },
-      { text: 'smart', sound: '/ɑː/' }, { text: 'barn', sound: '/ɑː/' }, { text: 'sunny', sound: '/ʌ/' },
-      { text: 'puzzle', sound: '/ʌ/' }, { text: 'targeted', sound: '/ɑː/' }, { text: 'punch', sound: '/ʌ/' },
-      { text: 'jumped', sound: '/ʌ/' }, { text: 'chuck', sound: '/ʌ/' }, { text: 'cuddle', sound: '/ʌ/' },
-      { text: 'charm', sound: '/ɑː/' }, { text: 'strut', sound: '/ʌ/' }, { text: 'market', sound: '/ɑː/' },
-      { text: 'apart', sound: '/ɑː/' }, { text: 'mug', sound: '/ʌ/' }, { text: 'harder', sound: '/ɑː/' },
-      { text: 'artist', sound: '/ɑː/' }, { text: 'march', sound: '/ɑː/' }, { text: 'bark', sound: '/ɑː/' },
-      { text: 'run', sound: '/ʌ/' }, { text: 'target', sound: '/ɑː/' }, { text: 'calm', sound: '/ɑː/' },
-      { text: 'large', sound: '/ɑː/' }, { text: 'hard', sound: '/ɑː/' }, { text: 'crush', sound: '/ʌ/' },
-      { text: 'truck', sound: '/ʌ/' }, { text: 'garden', sound: '/ɑː/' }, { text: 'jump', sound: '/ʌ/' },
-      { text: 'fun', sound: '/ʌ/' }, { text: 'stuff', sound: '/ʌ/' }, { text: 'yard', sound: '/ɑː/' },
-      { text: 'duck', sound: '/ʌ/' }, { text: 'start', sound: '/ɑː/' }, { text: 'arm', sound: '/ɑː/' },
-      { text: 'card', sound: '/ɑː/' }, { text: 'father', sound: '/ɑː/' }, { text: 'bus', sound: '/ʌ/' },
-      { text: 'car', sound: '/ɑː/' }, { text: 'bug', sound: '/ʌ/' }, { text: 'mud', sound: '/ʌ/' },
-      { text: 'nut', sound: '/ʌ/' }, { text: 'charge', sound: '/ɑː/' }, { text: 'hut', sound: '/ʌ/' },
-      { text: 'park', sound: '/ɑː/' }, { text: 'sun', sound: '/ʌ/' }, { text: 'shark', sound: '/ɑː/' },
-      { text: 'star', sound: '/ɑː/' }, { text: 'cup', sound: '/ʌ/' }, { text: 'drum', sound: '/ʌ/' },
-      { text: 'shut', sound: '/ʌ/' }, { text: 'harbor', sound: '/ɑː/' }, { text: 'cut', sound: '/ʌ/' },
-      { text: 'alarm', sound: '/ɑː/' }, { text: 'glove', sound: '/ʌ/' }, { text: 'flood', sound: '/ʌ/' },
-      { text: 'dark', sound: '/ɑː/' }, { text: 'luck', sound: '/ʌ/' }, { text: 'farm', sound: '/ɑː/' }
-    ];
+  const words = [
+    { text: 'partner', sound: '/ɑː/' }, { text: 'plump', sound: '/ʌ/' }, { text: 'funny', sound: '/ʌ/' },
+    { text: 'smart', sound: '/ɑː/' }, { text: 'barn', sound: '/ɑː/' }, { text: 'sunny', sound: '/ʌ/' },
+    { text: 'puzzle', sound: '/ʌ/' }, { text: 'targeted', sound: '/ɑː/' }, { text: 'punch', sound: '/ʌ/' },
+    { text: 'jumped', sound: '/ʌ/' }, { text: 'chuck', sound: '/ʌ/' }, { text: 'cuddle', sound: '/ʌ/' },
+    { text: 'charm', sound: '/ɑː/' }, { text: 'strut', sound: '/ʌ/' }, { text: 'market', sound: '/ɑː/' },
+    { text: 'apart', sound: '/ɑː/' }, { text: 'mug', sound: '/ʌ/' }, { text: 'harder', sound: '/ɑː/' },
+    { text: 'artist', sound: '/ɑː/' }, { text: 'march', sound: '/ɑː/' }, { text: 'bark', sound: '/ɑː/' },
+    { text: 'run', sound: '/ʌ/' }, { text: 'target', sound: '/ɑː/' }, { text: 'calm', sound: '/ɑː/' },
+    { text: 'large', sound: '/ɑː/' }, { text: 'hard', sound: '/ɑː/' }, { text: 'crush', sound: '/ʌ/' },
+    { text: 'truck', sound: '/ʌ/' }, { text: 'garden', sound: '/ɑː/' }, { text: 'jump', sound: '/ʌ/' },
+    { text: 'fun', sound: '/ʌ/' }, { text: 'stuff', sound: '/ʌ/' }, { text: 'yard', sound: '/ɑː/' },
+    { text: 'duck', sound: '/ʌ/' }, { text: 'start', sound: '/ɑː/' }, { text: 'arm', sound: '/ɑː/' },
+    { text: 'card', sound: '/ɑː/' }, { text: 'father', sound: '/ɑː/' }, { text: 'bus', sound: '/ʌ/' },
+    { text: 'car', sound: '/ɑː/' }, { text: 'bug', sound: '/ʌ/' }, { text: 'mud', sound: '/ʌ/' },
+    { text: 'nut', sound: '/ʌ/' }, { text: 'charge', sound: '/ɑː/' }, { text: 'hut', sound: '/ʌ/' },
+    { text: 'park', sound: '/ɑː/' }, { text: 'sun', sound: '/ʌ/' }, { text: 'shark', sound: '/ɑː/' },
+    { text: 'star', sound: '/ɑː/' }, { text: 'cup', sound: '/ʌ/' }, { text: 'drum', sound: '/ʌ/' },
+    { text: 'shut', sound: '/ʌ/' }, { text: 'harbor', sound: '/ɑː/' }, { text: 'cut', sound: '/ʌ/' },
+    { text: 'alarm', sound: '/ɑː/' }, { text: 'glove', sound: '/ʌ/' }, { text: 'flood', sound: '/ʌ/' },
+    { text: 'dark', sound: '/ɑː/' }, { text: 'luck', sound: '/ʌ/' }, { text: 'farm', sound: '/ɑː/' }
+  ];
 
-    let currentWord = null;
-    let score = 0, total = 0;
+  let currentWord = null;
+  let score = 0, total = 0;
+  let ukVoice = null;
 
-    const result = document.getElementById("result");
-    const scoreDisplay = document.getElementById("score");
-    const totalDisplay = document.getElementById("total");
-    const playAgainBtn = document.getElementById("playAgain");
+  const result = document.getElementById("result");
+  const scoreDisplay = document.getElementById("score");
+  const totalDisplay = document.getElementById("total");
+  const playAgainBtn = document.getElementById("playAgain");
 
-    const correctSound = document.getElementById("correctSound");
-    const wrongSound = document.getElementById("wrongSound");
+  const correctSound = document.getElementById("correctSound");
+  const wrongSound = document.getElementById("wrongSound");
 
-    document.getElementById("listenBtn").onclick = () => {
+  // Load UK voice sau khi trình duyệt khởi tạo
+  window.speechSynthesis.onvoiceschanged = () => {
+    const voices = speechSynthesis.getVoices();
+    ukVoice = voices.find(v => v.lang === "en-GB");
+  };
+
+  document.getElementById("listenBtn").onclick = () => {
+    playNext();
+  };
+
+  function playNext() {
+    currentWord = words[Math.floor(Math.random() * words.length)];
+
+    const utterance = new SpeechSynthesisUtterance(currentWord.text);
+    utterance.lang = "en-GB";
+    if (ukVoice) utterance.voice = ukVoice;
+
+    speechSynthesis.cancel(); // clear queue if any
+    speechSynthesis.speak(utterance);
+
+    result.textContent = "";
+    result.className = "result";
+    playAgainBtn.classList.add("d-none");
+  }
+
+  function chooseSound(selected) {
+    if (!currentWord) return;
+
+    total++;
+    totalDisplay.textContent = total;
+
+    if (selected === currentWord.sound) {
+      score++;
+      scoreDisplay.textContent = score;
+      result.textContent = `✅ Chính xác! Từ: ${currentWord.text} (${currentWord.sound})`;
+      result.classList.add("text-success");
+      correctSound.play();
+    } else {
+      result.textContent = `❌ Sai rồi! Từ: ${currentWord.text} (${currentWord.sound})`;
+      result.classList.add("text-danger");
+      wrongSound.play();
+    }
+
+    playAgainBtn.classList.remove("d-none");
+
+    setTimeout(() => {
       playNext();
-    };
+    }, 1500);
+  }
+</script>
 
-    function playNext() {
-      currentWord = words[Math.floor(Math.random() * words.length)];
-      const utterance = new SpeechSynthesisUtterance(currentWord.text);
-      utterance.lang = "en-GB"; // Chỉ dùng British English
-      speechSynthesis.speak(utterance);
-      result.textContent = "";
-      result.className = "result";
-      playAgainBtn.classList.add("d-none");
-    }
-
-    function chooseSound(selected) {
-      if (!currentWord) return;
-
-      total++;
-      totalDisplay.textContent = total;
-
-      if (selected === currentWord.sound) {
-        score++;
-        scoreDisplay.textContent = score;
-        result.textContent = `✅ Chính xác! Từ: ${currentWord.text} (${currentWord.sound})`;
-        result.classList.add("text-success");
-        correctSound.play();
-      } else {
-        result.textContent = `❌ Sai rồi! Từ: ${currentWord.text} (${currentWord.sound})`;
-        result.classList.add("text-danger");
-        wrongSound.play();
-      }
-
-      playAgainBtn.classList.remove("d-none");
-
-      setTimeout(() => {
-        playNext();
-      }, 1500);
-    }
-  </script>
 </body>
 
 </html>
